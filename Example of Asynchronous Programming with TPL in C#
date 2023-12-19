@@ -1,0 +1,29 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        // Asynchronously run two tasks
+        Task<int> task1 = Task.Run(() => CalculateResult(10));
+        Task<int> task2 = Task.Run(() => CalculateResult(20));
+
+        // Await both tasks to complete
+        int result1 = await task1;
+        int result2 = await task2;
+
+        // Display the results
+        Console.WriteLine($"Result 1: {result1}");
+        Console.WriteLine($"Result 2: {result2}");
+    }
+
+    static int CalculateResult(int value)
+    {
+        // Simulate a time-consuming operation
+        Thread.Sleep(TimeSpan.FromSeconds(2));
+
+        return value * 2;
+    }
+}
